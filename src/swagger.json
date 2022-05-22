@@ -1,0 +1,234 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Users' Doc",
+    "description": "Simple documentation for a user handling API",
+    "version": "1.0.0",
+    "contact": {
+      "email": "galdino_mateus1000@outlook.com"
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Creates a user",
+        "description": "Creates a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "user name sample",
+                  "email": "user email sample"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Retrieves users data",
+        "description": "Retrieves a list of users by providing an admin user's ID",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "user_id",
+            "required": true,
+            "schema": {
+              "type": "number"
+            },
+            "description": "User's id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "admin": {
+                        "type": "boolean"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "id": "1234567890",
+                      "admin": false,
+                      "name": "user name sample",
+                      "email": "user email sample",
+                      "created_at": "2022-05-22T16:31:58.883",
+                      "updated_at": "2022-05-22T16:31:58.883"
+                    },
+                    {
+                      "id": "09876543321",
+                      "admin": true,
+                      "name": "user name sample",
+                      "email": "user email sample",
+                      "created_at": "2022-05-22T16:31:58.883",
+                      "updated_at": "2022-05-22T16:31:58.883"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Retrieves user data",
+        "description": "Retrieves a single user complete data info",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "user_id",
+            "required": true,
+            "schema": {
+              "type": "number"
+            },
+            "description": "User's id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "id": "1234567890",
+                    "admin": false,
+                    "name": "user name sample",
+                    "email": "user email sample",
+                    "created_at": "2022-05-22T16:31:58.883",
+                    "updated_at": "2022-05-22T16:31:58.883"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}/admin": {
+      "patch": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Creates an admin",
+        "description": "Turns a common user into an admin",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "user_id",
+            "required": true,
+            "schema": {
+              "type": "number"
+            },
+            "description": "User's id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "id": "1234567890",
+                    "admin": true,
+                    "name": "user name sample",
+                    "email": "user email sample",
+                    "created_at": "2022-05-22T16:31:58.883",
+                    "updated_at": "2022-05-22T16:31:58.883"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
